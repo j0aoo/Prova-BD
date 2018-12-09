@@ -7,6 +7,8 @@ package Principal;
 import Visao.Cadastrar.*;
 import Visao.Alterar.*;
 import Visao.Excluir.*;
+import Visao.Consultar.*;
+import Consulta.*;
 
 import javax.swing.JOptionPane;
 
@@ -21,6 +23,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setSize(1013, 710);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -50,6 +53,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -95,6 +99,11 @@ public class Principal extends javax.swing.JFrame {
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/images prova_crt.png"))); // NOI18N
 
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/folder-add-icon.png"))); // NOI18N
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Sair");
 
@@ -144,15 +153,21 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/medicina 20.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jMenu3.setText("Funcionario");
@@ -182,6 +197,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Consultar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuBar2.add(jMenu3);
@@ -213,6 +233,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem7);
 
         jMenuItem8.setText("Consultar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem8);
 
         jMenuBar2.add(jMenu4);
@@ -244,6 +269,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu7.add(jMenuItem12);
 
         jMenuItem13.setText("Consultar");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem13);
 
         jMenuBar2.add(jMenu7);
@@ -345,6 +375,34 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        
+        new ConsultarFuncionario().setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        
+        new ConsultarCliente().setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        
+        new ConsultarProcedimento().setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        new Agendamento().setVisible(true);
+        
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -385,6 +443,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

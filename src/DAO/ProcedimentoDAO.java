@@ -41,6 +41,123 @@ public class ProcedimentoDAO extends ExecuteSQL {
         
     }    
     
+    public List<Procedimento> ListarProcedimento() {
+    
+        String sql = "select cod,nome,preco from procedimento";
+        List<Procedimento> Lista = new ArrayList<>();
+           
+        try {
+
+            PreparedStatement ps = getcon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                
+                while (rs.next()) {
+                    
+                    Procedimento a = new Procedimento();
+                    a.setCodigo(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setPreco(rs.getDouble(3));
+                
+                    Lista.add(a);
+                    
+                }
+                
+                return Lista;
+                
+            } else {
+                
+                return null;
+                
+            }
+            
+        } catch (SQLException e) {
+            
+            return null;
+            
+        }
+        
+    }
+    
+    public List<Procedimento> Pesquisar_Nome_Procedimento(String nome) {
+    
+        String sql = "select cod,nome,preco from procedimento where nome like '%"+ nome +"%'";
+        List<Procedimento> Lista = new ArrayList<>();
+           
+        try {
+
+            PreparedStatement ps = getcon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                
+                while (rs.next()) {
+                    
+                    Procedimento a = new Procedimento();
+                    a.setCodigo(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setPreco(rs.getDouble(3));
+                
+                    Lista.add(a);
+                    
+                }
+                
+                return Lista;
+                
+            } else {
+                
+                return null;
+                
+            }
+            
+        } catch (SQLException e) {
+            
+            return null;
+            
+        }
+        
+    }
+    
+    public List<Procedimento> Pesquisar_Cod_Procedimento(int cod) {
+    
+        String sql = "select cod,nome,preco from procedimento where cod = "+ cod +"";
+        List<Procedimento> Lista = new ArrayList<>();
+           
+        try {
+
+            PreparedStatement ps = getcon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                
+                while (rs.next()) {
+                    
+                    Procedimento a = new Procedimento();
+                    a.setCodigo(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setPreco(rs.getDouble(3));
+                
+                    Lista.add(a);
+                    
+                }
+                
+                return Lista;
+                
+            } else {
+                
+                return null;
+                
+            }
+            
+        } catch (SQLException e) {
+            
+            return null;
+            
+        }
+        
+    }
+    
     public List<Procedimento> ListarComboProcedimento(){
         
         String sql = "select nome from procedimento order by nome";
@@ -94,6 +211,42 @@ public class ProcedimentoDAO extends ExecuteSQL {
                     
                     Procedimento a = new Procedimento();
                     a.setCodigo(rs.getInt(1));
+                    lista.add(a);
+
+                }
+                
+                return lista;
+                
+            } else {
+                
+                return null;
+                
+            }
+            
+        } catch (Exception e) {
+            
+            return null;
+            
+        }
+        
+    }
+    
+    public List<Procedimento> ConsultaPrecoProcedimento(String nome) {
+        
+        String sql = "select preco from procedimento where nome = '"+ nome +"'";
+        List<Procedimento> lista = new ArrayList<>();
+        
+        try {
+            
+            PreparedStatement ps = getcon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                
+                while (rs.next()) {
+                    
+                    Procedimento a = new Procedimento();
+                    a.setPreco(rs.getDouble(1));
                     lista.add(a);
 
                 }

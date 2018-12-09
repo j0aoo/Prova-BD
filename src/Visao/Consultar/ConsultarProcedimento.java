@@ -5,13 +5,10 @@
  */
 package Visao.Consultar;
 
-import DAO.ClienteDAO;
-import DAO.Conexao;
-import DAO.FuncionarioDAO;
-import Modelo.Funcionario;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
+import DAO.*;
+import Modelo.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -19,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author cliente
  */
-public class ConsultarFuncionario extends javax.swing.JFrame {
+public class ConsultarProcedimento extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsultarFuncionario
      */
-    public ConsultarFuncionario() {
+    public ConsultarProcedimento() {
         initComponents();
         setSize(884, 543);
         setLocationRelativeTo(this);
@@ -36,9 +33,9 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
     public void AtualizaTable() {
         
         Connection con = Conexao.AbrirConexao();
-        FuncionarioDAO bd = new FuncionarioDAO(con);
-        List<Funcionario> lista = new ArrayList<>();
-        lista = bd.ListarFuncionario();
+        ProcedimentoDAO bd = new ProcedimentoDAO(con);
+        List<Procedimento> lista = new ArrayList<>();
+        lista = bd.ListarProcedimento();
        
         DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
         
@@ -49,13 +46,12 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         }
 
         int i = 0;
-        for (Funcionario tab : lista) {
+        for (Procedimento tab : lista) {
             
             tbm.addRow(new String[i]);
-            jTable1.setValueAt(tab.getCod(), i, 0);
+            jTable1.setValueAt(tab.getCodigo(), i, 0);
             jTable1.setValueAt(tab.getNome(), i, 1);
-            jTable1.setValueAt(tab.getLogin(), i, 2);
-            jTable1.setValueAt(tab.getSenha(), i, 3);
+            jTable1.setValueAt(tab.getPreco(), i, 2);
             
             i++;
             
@@ -68,9 +64,9 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
     public void PesquisaNome() {
         
         Connection con = Conexao.AbrirConexao();
-        FuncionarioDAO bd = new FuncionarioDAO(con);
-        List<Funcionario> lista = new ArrayList<>();
-        lista = bd.Pesquisar_Nome_Cliente(jTF_Nome.getText());
+        ProcedimentoDAO bd = new ProcedimentoDAO(con);
+        List<Procedimento> lista = new ArrayList<>();
+        lista = bd.Pesquisar_Nome_Procedimento(jTF_Nome.getText());
        
         DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
         
@@ -81,13 +77,12 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         }
 
         int i = 0;
-        for (Funcionario tab : lista) {
+        for (Procedimento tab : lista) {
             
             tbm.addRow(new String[i]);
-            jTable1.setValueAt(tab.getCod(), i, 0);
+            jTable1.setValueAt(tab.getCodigo(), i, 0);
             jTable1.setValueAt(tab.getNome(), i, 1);
-            jTable1.setValueAt(tab.getLogin(), i, 2);
-            jTable1.setValueAt(tab.getSenha(), i, 3);
+            jTable1.setValueAt(tab.getPreco(), i, 2);
             
             i++;
             
@@ -105,9 +100,9 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         int cod = Integer.parseInt(jTF_Cod.getText());
         
         Connection con = Conexao.AbrirConexao();
-        FuncionarioDAO bd = new FuncionarioDAO(con);
-        List<Funcionario> lista = new ArrayList<>();
-        lista = bd.Pesquisar_Cod_Cliente(cod);
+        ProcedimentoDAO bd = new ProcedimentoDAO(con);
+        List<Procedimento> lista = new ArrayList<>();
+        lista = bd.Pesquisar_Cod_Procedimento(cod);
        
         DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
         
@@ -118,13 +113,12 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         }
 
         int i = 0;
-        for (Funcionario tab : lista) {
+        for (Procedimento tab : lista) {
             
             tbm.addRow(new String[i]);
-            jTable1.setValueAt(tab.getCod(), i, 0);
+            jTable1.setValueAt(tab.getCodigo(), i, 0);
             jTable1.setValueAt(tab.getNome(), i, 1);
-            jTable1.setValueAt(tab.getLogin(), i, 2);
-            jTable1.setValueAt(tab.getSenha(), i, 3);
+            jTable1.setValueAt(tab.getPreco(), i, 2);
             
             i++;
             
@@ -247,11 +241,11 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nome", "Login", "Senha"
+                "Codigo", "Nome", "Preço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -355,21 +349,23 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProcedimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProcedimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProcedimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProcedimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultarFuncionario().setVisible(true);
+                new ConsultarProcedimento().setVisible(true);
             }
         });
     }

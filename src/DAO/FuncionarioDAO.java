@@ -118,7 +118,7 @@ public class FuncionarioDAO extends ExecuteSQL {
     
     public List<Funcionario> Pesquisar_Nome_Cliente(String nome) {
     
-        String sql = "select idcliente,nome,rg,cpf,telefone,email from cliente where nome like '%"+ nome +"%'";
+        String sql = "select idfuncionario,nome,login,senha from funcionario where nome like '%"+ nome +"%'";
         List<Funcionario> Lista = new ArrayList<>();
            
         try {
@@ -158,7 +158,7 @@ public class FuncionarioDAO extends ExecuteSQL {
     
     public List<Funcionario> Pesquisar_Cod_Cliente(int cod) {
     
-        String sql = "select idcliente,nome,rg,cpf,telefone,email from cliente where idcliente like '%"+ cod +"%'";
+        String sql = "select idfuncionario,nome,login,senha from funcionario where idfuncionario = "+ cod +"";
         List<Funcionario> Lista = new ArrayList<>();
            
         try {
