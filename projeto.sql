@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Dez-2018 às 20:02
+-- Generation Time: 09-Dez-2018 às 22:11
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -49,6 +49,21 @@ INSERT INTO `cliente` (`idcliente`, `nome`, `data_nasc`, `rg`, `cpf`, `email`, `
 (2, 'JC', '11/11/1111', '78.587.667-87', '876.786.786-87', 'JC@gmail.com', '(11)11111-1111', 'Bairro - teste', 'Rua - teste', 1),
 (3, 'Maria', '11/11/1111', '32.423.423-42', '231.231.231-23', 'maria@gmail.com', '(33)33333-3333', 'teste - bairro', 'teste - rua', 22),
 (4, 'cliente', '13/12/2018', '11.212.123-21', '675.676.567-56', 'cliente@gmail.com', '(33)33333-3333', 'teste', 'teste', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `consulta`
+--
+
+CREATE TABLE `consulta` (
+  `idconsulta` int(11) NOT NULL,
+  `idcliente` int(11) NOT NULL,
+  `idprocedimento` int(11) NOT NULL,
+  `data_atual` varchar(50) NOT NULL,
+  `data_consulta` varchar(50) NOT NULL,
+  `preco_consulta` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -103,6 +118,14 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`idcliente`);
 
 --
+-- Indexes for table `consulta`
+--
+ALTER TABLE `consulta`
+  ADD PRIMARY KEY (`idconsulta`),
+  ADD KEY `idcliente` (`idcliente`),
+  ADD KEY `idprocedimento` (`idprocedimento`);
+
+--
 -- Indexes for table `funcionario`
 --
 ALTER TABLE `funcionario`
@@ -125,16 +148,33 @@ ALTER TABLE `cliente`
   MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `consulta`
+--
+ALTER TABLE `consulta`
+  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `procedimento`
 --
 ALTER TABLE `procedimento`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `consulta`
+--
+ALTER TABLE `consulta`
+  ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`idprocedimento`) REFERENCES `procedimento` (`cod`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
