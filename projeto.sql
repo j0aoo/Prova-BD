@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Dez-2018 às 22:11
+-- Generation Time: 10-Dez-2018 às 03:26
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -60,10 +60,19 @@ CREATE TABLE `consulta` (
   `idconsulta` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `idprocedimento` int(11) NOT NULL,
-  `data_atual` varchar(50) NOT NULL,
-  `data_consulta` varchar(50) NOT NULL,
-  `preco_consulta` varchar(11) NOT NULL
+  `preco_consulta` varchar(14) NOT NULL,
+  `horario` varchar(11) NOT NULL,
+  `nomecli` varchar(100) NOT NULL,
+  `data_atual` varchar(20) NOT NULL,
+  `data_consulta` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `consulta`
+--
+
+INSERT INTO `consulta` (`idconsulta`, `idcliente`, `idprocedimento`, `preco_consulta`, `horario`, `nomecli`, `data_atual`, `data_consulta`) VALUES
+(5, 3, 3, '$80.5', '22:22', 'Maria', '06/12/2018', '14/12/2018');
 
 -- --------------------------------------------------------
 
@@ -84,7 +93,8 @@ CREATE TABLE `funcionario` (
 
 INSERT INTO `funcionario` (`idfuncionario`, `nome`, `login`, `senha`) VALUES
 (1, 'Administrador', 'qwe', '123'),
-(2, 'Administrador - 2', 'jc', '123');
+(2, 'Administrador - 2', 'jc', '123'),
+(3, 'tu', 'tu', '123');
 
 -- --------------------------------------------------------
 
@@ -103,8 +113,6 @@ CREATE TABLE `procedimento` (
 --
 
 INSERT INTO `procedimento` (`cod`, `nome`, `preco`) VALUES
-(1, 'teste - 1', 12),
-(2, 'teste - 2', 12),
 (3, 'Mnutenção do aparelho', 80.5);
 
 --
@@ -122,8 +130,8 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `consulta`
   ADD PRIMARY KEY (`idconsulta`),
-  ADD KEY `idcliente` (`idcliente`),
-  ADD KEY `idprocedimento` (`idprocedimento`);
+  ADD KEY `consulta_ibfk_1` (`idcliente`),
+  ADD KEY `consulta_ibfk_2` (`idprocedimento`);
 
 --
 -- Indexes for table `funcionario`
@@ -151,13 +159,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT for table `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `procedimento`

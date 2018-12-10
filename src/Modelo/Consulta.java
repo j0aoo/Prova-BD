@@ -2,30 +2,32 @@ package Modelo;
 
 public class Consulta {
  
-    //atributos
-    private int codido;
-    private int cod_Cliente;
+    //Atributos
+    private int codigo;
+    private int cod_cliente;
     private int cod_procedimento;
-    private String data_atu;
-    private String data_consulta;
     private String preco_procedimento;
-    
+    private String horario;
+    private String nomeCli;
+    private String dataAtual;
+    private String dataConsulta;
+
     //getters e setters
 
-    public int getCodido() {
-        return codido;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodido(int codido) {
-        this.codido = codido;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public int getCod_Cliente() {
-        return cod_Cliente;
+    public int getCod_cliente() {
+        return cod_cliente;
     }
 
-    public void setCod_Cliente(int cod_Cliente) {
-        this.cod_Cliente = cod_Cliente;
+    public void setCod_cliente(int cod_cliente) {
+        this.cod_cliente = cod_cliente;
     }
 
     public int getCod_procedimento() {
@@ -36,22 +38,6 @@ public class Consulta {
         this.cod_procedimento = cod_procedimento;
     }
 
-    public String getData_atu() {
-        return data_atu;
-    }
-
-    public void setData_atu(String data_atu) {
-        this.data_atu = data_atu;
-    }
-
-    public String getData_consulta() {
-        return data_consulta;
-    }
-
-    public void setData_consulta(String data_consulta) {
-        this.data_consulta = data_consulta;
-    }
-
     public String getPreco_procedimento() {
         return preco_procedimento;
     }
@@ -59,5 +45,39 @@ public class Consulta {
     public void setPreco_procedimento(String preco_procedimento) {
         this.preco_procedimento = preco_procedimento;
     }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public String getNomeCli() {
+        return nomeCli;
+    }
+
+    public void setNomeCli(String nomeCli) {
+        this.nomeCli = nomeCli;
+    }
+
+    public String getDataAtual() {
+        return dataAtual;
+    }
+
+    public void setDataAtual(String dataAtual) {
+        this.dataAtual = dataAtual;
+    }
+
+    public String getDataConsulta() {
+        return dataConsulta;
+    }
+
+    public void setDataConsulta(String dataConsulta) {
+        this.dataConsulta = dataConsulta;
+    }
+
     
+       
 }

@@ -5,14 +5,11 @@
  */
 package Consulta;
 
-import DAO.ClienteDAO;
-import DAO.Conexao;
-import DAO.ProcedimentoDAO;
-import Modelo.Cliente;
-import Modelo.Procedimento;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
+import DAO.*;
+import Modelo.*;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +23,7 @@ public class Agendamento extends javax.swing.JFrame {
      */
     public Agendamento() {
         initComponents();
-        setSize(918, 603);
+        setSize(918, 645);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -67,7 +64,7 @@ public class Agendamento extends javax.swing.JFrame {
         for (Procedimento b : lista) {
             
             int a = (int) b.getCodigo();
-            jTf_Preco.setText(""+a);
+            jTf_codProced.setText(""+a);
                 
         }
         
@@ -87,7 +84,7 @@ public class Agendamento extends javax.swing.JFrame {
         for (Procedimento b : lista) {
             
             double a = (double) b.getPreco();
-            jTf_Preco1.setText("$"+a);
+            jTf_Preco.setText("$"+a);
                 
         }
         
@@ -127,7 +124,7 @@ public class Agendamento extends javax.swing.JFrame {
         for (Cliente b : lista) {
             
             int a = b.getCodigo();
-            jTf_Codigo1.setText(""+a);
+            jTf_CodCliente.setText(""+a);
                 
         }
         
@@ -149,18 +146,20 @@ public class Agendamento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTf_Preco = new javax.swing.JTextField();
+        jTf_codProced = new javax.swing.JTextField();
         ComboProced = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTf_Codigo1 = new javax.swing.JTextField();
+        jTf_CodCliente = new javax.swing.JTextField();
         ComboCliente = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTf_Preco1 = new javax.swing.JTextField();
+        jTf_Preco = new javax.swing.JTextField();
+        jTF_horario = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        dataAtual = new com.toedter.calendar.JDateChooser();
+        DataConsulta = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -198,7 +197,7 @@ public class Agendamento extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Procedimento");
 
-        jTf_Preco.setEditable(false);
+        jTf_codProced.setEditable(false);
 
         ComboProced.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,10 +208,10 @@ public class Agendamento extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Cliente");
 
-        jTf_Codigo1.setEditable(false);
-        jTf_Codigo1.addActionListener(new java.awt.event.ActionListener() {
+        jTf_CodCliente.setEditable(false);
+        jTf_CodCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTf_Codigo1ActionPerformed(evt);
+                jTf_CodClienteActionPerformed(evt);
             }
         });
 
@@ -233,7 +232,16 @@ public class Agendamento extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Valor - procedimento");
 
-        jTf_Preco1.setEditable(false);
+        jTf_Preco.setEditable(false);
+
+        try {
+            jTF_horario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Horario da consulta");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -248,11 +256,11 @@ public class Agendamento extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTf_Codigo1)
-                            .addComponent(jTf_Preco, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                            .addComponent(jTf_CodCliente)
+                            .addComponent(jTf_codProced, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ComboProced, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ComboProced, 0, 294, Short.MAX_VALUE)
                             .addComponent(ComboCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -261,10 +269,14 @@ public class Agendamento extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                            .addComponent(jTf_Preco1)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(83, 83, 83)
+                            .addComponent(jTf_Preco)
+                            .addComponent(DataConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dataAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTF_horario)))
+                .addGap(89, 89, 89)
                 .addComponent(jLabel5)
                 .addGap(87, 87, 87))
         );
@@ -273,32 +285,39 @@ public class Agendamento extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTf_Codigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ComboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jTf_CodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jTf_codProced, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComboProced, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jTf_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jTF_horario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dataAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTf_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ComboProced, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTf_Preco1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(DataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(23, 23, 23)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -375,12 +394,73 @@ public class Agendamento extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ComboClienteActionPerformed
 
-    private void jTf_Codigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTf_Codigo1ActionPerformed
+    private void jTf_CodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTf_CodClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTf_Codigo1ActionPerformed
+    }//GEN-LAST:event_jTf_CodClienteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+        String codCliente = jTf_CodCliente.getText();
+        String codPro = jTf_codProced.getText();
+        String preco = jTf_Preco.getText();
+        String horario = jTF_horario.getText();
+        String nomeCli = ComboCliente.getSelectedItem().toString();
+        String dataAtual = new SimpleDateFormat("dd/MM/yyyy").format(this.dataAtual.getDate());
+        String dataConsulta = new SimpleDateFormat("dd/MM/yyyy").format(this.DataConsulta.getDate());
+        
+        if (codCliente.equals("") || codPro.equals("") || preco.equals("") || horario.equals("") || dataAtual.equals("")
+        || dataConsulta.equals("")) {
+            
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!", "", JOptionPane.WARNING_MESSAGE);
+            
+        } else {
+            
+            Connection con = Conexao.AbrirConexao();
+            ConsultaDAO sql = new ConsultaDAO(con);
+            int codCli = Integer.parseInt(codCliente);
+            int codProced = Integer.parseInt(codPro);
+            
+            if (sql.Testar_Consulta_Agendamento(dataConsulta, horario) == true) {
+            
+                JOptionPane.showMessageDialog(null, "O sistema constatou que ja existe uma consulta marcada neste dia e horario", "", JOptionPane.ERROR_MESSAGE);
+                Conexao.FecharConexao(con);
+                
+                jTf_CodCliente.setText("");
+                jTF_horario.setText("");
+                jTf_Preco.setText("");
+                jTf_codProced.setText("");
+                this.dataAtual.setDateFormatString("");
+                this.DataConsulta.setDateFormatString("");
+            
+            } else {
+             
+                Consulta a = new Consulta();
+            
+                a.setCod_cliente(codCli);
+                a.setCod_procedimento(codProced);
+                a.setPreco_procedimento(preco);
+                a.setHorario(horario);
+                a.setNomeCli(nomeCli);
+                a.setDataAtual(dataAtual);
+                a.setDataConsulta(dataConsulta);
+
+                sql.Inserir_Consulta(a);
+                Conexao.FecharConexao(con);
+
+                jTf_CodCliente.setText("");
+                jTF_horario.setText("");
+                jTf_Preco.setText("");
+                jTf_codProced.setText("");
+                this.dataAtual.setDateFormatString("");
+                this.DataConsulta.setDateFormatString("");
+
+                JOptionPane.showMessageDialog(null, "Consulta marcada com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                
+            }
+            
+        }
 
         
         
@@ -437,23 +517,25 @@ public class Agendamento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboCliente;
     private javax.swing.JComboBox<String> ComboProced;
+    private com.toedter.calendar.JDateChooser DataConsulta;
+    private com.toedter.calendar.JDateChooser dataAtual;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTf_Codigo1;
+    private javax.swing.JFormattedTextField jTF_horario;
+    private javax.swing.JTextField jTf_CodCliente;
     private javax.swing.JTextField jTf_Preco;
-    private javax.swing.JTextField jTf_Preco1;
+    private javax.swing.JTextField jTf_codProced;
     // End of variables declaration//GEN-END:variables
 }
