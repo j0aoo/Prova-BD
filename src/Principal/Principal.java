@@ -311,7 +311,7 @@ public class Principal extends javax.swing.JFrame {
             
             new Login().setVisible(true);
             dispose();
-            
+                        
         }
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
