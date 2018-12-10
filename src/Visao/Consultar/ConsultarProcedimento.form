@@ -212,7 +212,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Consulta de funcion&#xe1;rio"/>
+            <Property name="text" type="java.lang.String" value="Consulta de procedimento"/>
           </Properties>
         </Component>
       </SubComponents>

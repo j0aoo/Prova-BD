@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Dez-2018 às 03:26
+-- Generation Time: 10-Dez-2018 às 06:37
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -47,8 +47,7 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`idcliente`, `nome`, `data_nasc`, `rg`, `cpf`, `email`, `telefone`, `bairro`, `rua`, `numero`) VALUES
 (2, 'JC', '11/11/1111', '78.587.667-87', '876.786.786-87', 'JC@gmail.com', '(11)11111-1111', 'Bairro - teste', 'Rua - teste', 1),
-(3, 'Maria', '11/11/1111', '32.423.423-42', '231.231.231-23', 'maria@gmail.com', '(33)33333-3333', 'teste - bairro', 'teste - rua', 22),
-(4, 'cliente', '13/12/2018', '11.212.123-21', '675.676.567-56', 'cliente@gmail.com', '(33)33333-3333', 'teste', 'teste', 3);
+(3, 'Maria', '11/11/1111', '32.423.423-42', '231.231.231-23', 'maria@gmail.com', '(33)33333-3333', 'teste - bairro', 'teste - rua', 22);
 
 -- --------------------------------------------------------
 
@@ -92,9 +91,7 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`idfuncionario`, `nome`, `login`, `senha`) VALUES
-(1, 'Administrador', 'qwe', '123'),
-(2, 'Administrador - 2', 'jc', '123'),
-(3, 'tu', 'tu', '123');
+(1, 'Administrador', 'qwe', '123');
 
 -- --------------------------------------------------------
 
@@ -153,19 +150,19 @@ ALTER TABLE `procedimento`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `procedimento`
